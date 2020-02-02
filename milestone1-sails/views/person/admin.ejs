@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Estate</th>
+            <th scope="col">Edit</th>
+        </tr>
+    </thead>
+    <% persons.forEach( function(model) { %>
+    <tr>
+        <td>
+            <a href="/person/view/<%= model.id%>"> <%= model.id %> </a>
+        </td>
+        <td>
+            <%= model.title %>
+        </td>
+        <td>
+            <%= model.estate %>
+        </td>
+        <td>
+            <a href="/person/update/<%= model.id%>">Edit</a>
+        </td>
+    </tr>
+    <% }); %>
+</table>

@@ -1,0 +1,92 @@
+<div class="row">
+
+
+    <div class="col-12 col-md-4">
+        <% if (persons.length > 0) { %>
+        <% const current = parseInt(req.query.page) || 1; %>
+        <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="/person/search?estate=<%= req.query.estate %>&bedrooms=<%= req.query.bedrooms %>&grossareaMin=<%= req.query.grossareaMin %>&grossareaMax=<%= req.query.grossareaMax %>&rentMin=<%= req.query.rentMin %>&rentMax=<%= req.query.rentMax %>&page=<%= Math.max(current-1, 1) %>">Previous</a>
+                </li>
+
+                <% for (i = 1; i <= count; i++) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/person/search?estate=<%= req.query.estate %>&bedrooms=<%= req.query.bedrooms %>&grossareaMin=<%= req.query.grossareaMin %>&grossareaMax=<%= req.query.grossareaMax %>&rentMin=<%= req.query.rentMin %>&rentMax=<%= req.query.rentMax %>&page=<%= i %>">
+                        <%= i %></a>
+                </li>
+                <% } %>
+
+                <li class="page-item">
+                    <a class="page-link" href="/person/search?estate=<%= req.query.estate %>&bedrooms=<%= req.query.bedrooms %>&grossareaMin=<%= req.query.grossareaMin %>&grossareaMax=<%= req.query.grossareaMax %>&rentMin=<%= req.query.rentMin %>&rentMax=<%= req.query.rentMax %>&page=<%= Math.min(current+1, count) %>">Next</a>
+                </li>
+            </ul>
+        <h4>Property Search</h4>
+        <form action="/person/search" method="GET">
+            <div class="form-group">
+                Estate
+                <select class="form-control" name="estate">
+                    <option value="">Anyone</option>
+                    <option value="Tin Ma Court">Tin Ma Court</option>
+                    <option value="Shek Kip Mei">Shek Kip Mei</option>
+                    <option value="Festival City">Festival City</option>
+                    <option value="Tai Wai">Tai Wai</option>
+                    <option value="Kowloon City">Kowloon City</option>
+                    <option value="Wong Tai Sin">Wong Tai Sin</option>
+                    <option value="Mong Kok">Mong Kok</option>
+                </select>
+            </div>
+            <div class="form-group">
+                Bedrooms
+                <input type="number" class="form-control" name="bedrooms">
+            </div>
+            <div class="form-group row">
+                <div class="col-12">Gross Area (Sq feet):</div>
+                <div class="col-2">Min</div><input type="number" class="form-control col-3" name="grossareaMin"
+                    value="0">
+                <div class="col-2">Max</div><input type="number" class="form-control col-3" name="grossareaMax"
+                    value="0">
+            </div>
+            <div class="form-group row">
+                <div class="col-12">Rent (HK$):</div>
+                <div class="col-2">Min</div><input type="number" class="form-control col-3" name="rentMin" value="0">
+                <div class="col-2">Max</div><input type="number" class="form-control col-3" name="rentMax"
+                    value="0">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+
+    <div class="col-12 col-md-8">
+        <div class="row">
+            <% 
+            var cnt = 1;
+            for (var i = noSkip; i < persons.length; i++) { 
+                if (cnt > 2)
+                    break;
+            %>
+            <div class="card mb-3 col-12 col-md-6">
+                <div class="row no-gutters">
+                    <div class="card-img-top">
+                        <img src="<%= persons[i].image %>" class="card-img card-body" alt="<%= persons[i].title %>">
+                    </div>
+                    <h4 class=""><a href="/person/view/<%= persons[i].id %>"><%= persons[i].title %></a></h4>
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">Estate: <%= persons[i].estate %></li>
+                                <li class="list-group-item">Gross Area: <%= persons[i].grossarea %></li>
+                                <li class="list-group-item">Rent: HK$ <%= persons[i].rent %> per month</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%
+                cnt++;
+            }
+            %>
+        </div>
+    </div>
+    <% } %>
+</div>

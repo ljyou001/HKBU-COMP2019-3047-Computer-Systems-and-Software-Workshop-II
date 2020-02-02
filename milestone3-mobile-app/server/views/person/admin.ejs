@@ -1,0 +1,61 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Estate</th>
+            <th scope="col">Occupants</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <% persons.forEach( function(model) { %>
+    <tr>
+        <td>
+            <a href="/person/view/<%= model.id%>"> <%= model.id %> </a>
+        </td>
+        <td>
+            <%= model.title %>
+        </td>
+        <td>
+            <%= model.estate %>
+        </td>
+        <td>
+            <a href="/person/<%= model.id%>/rent">Occupants</a>
+        </td>
+        <td>
+            <a href="/person/update/<%= model.id%>">Edit</a>
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger" onclick="deletePerson('<%= model.id %>')">Delete</button>
+        </td>
+    </tr>
+    <% }); %>
+</table>
+
+<script>
+
+    async function deletePerson(id) {
+
+        var r = confirm("Confirm Delete?");
+        if (r == true) {
+
+            var response = await fetch("/person/" + id, {
+                method: "DELETE",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                alert("Deleted.");
+                location.reload(true);
+            } else {
+                alert(response.statusText);
+            }
+
+        } else {
+            alert("cancelled");
+        }
+
+    };
+
+</script>

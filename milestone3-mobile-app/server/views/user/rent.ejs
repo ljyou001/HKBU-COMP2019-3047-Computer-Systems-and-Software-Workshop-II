@@ -1,0 +1,19 @@
+<div class="row">
+    <%
+        persons.forEach( function(person){
+    %>
+        <div class="card col-12 col-sm-4">
+            <img class="img-fluid imageFit" src="<%= person.image %>" />
+            <br />
+            <span class="font-weight-bold"><a href="/person/view/<%= person.id %>"><%= person.title %></a></span>
+            <br />
+            <ul class="list-group">
+                <li class="list-group-item">Estate: <%= person.estate %></li>
+                <li class="list-group-item">Gross Area: <%= person.grossarea %></li>
+                <li class="list-group-item">Rent: HK$ <%= person.rent %> per month</li>
+            </ul>
+        </div>
+    <%
+        });
+    %>
+</div>

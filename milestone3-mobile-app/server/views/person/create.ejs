@@ -1,0 +1,56 @@
+<form action="/person/create" method="POST">
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label>Property Title *</label>
+            <input type="text" class="form-control" name="Person[title]" required>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label>Image URL *</label>
+            <input type="text" class="form-control" name="Person[image]" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label>Estate *</label>
+            <select class="form-control" name="Person[estate]" required>
+                <option value="Tin Ma Court">Tin Ma Court</option>
+                <option value="Shek Kip Mei">Shek Kip Mei</option>
+                <option value="Festival City">Festival City</option>
+                <option value="Tai Wai">Tai Wai</option>
+                <option value="Kowloon City">Kowloon City</option>
+                <option value="Wong Tai Sin">Wong Tai Sin</option>
+                <option value="Mong Kok">Mong Kok</option>
+            </select>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label>Bedrooms *</label>
+            <input type="number" class="form-control" name="Person[bedrooms]" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label>Gross Area *</label>
+            <input type="number" class="form-control" name="Person[grossarea]" required>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label>Expacted Tenants *</label>
+            <input type="number" class="form-control" name="Person[tenants]" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label>Rent *</label>
+            <input type="number" class="form-control" name="Person[rent]" required>
+        </div>
+        <div class="form-check form-check-inline col-12 col-md-5">
+            <input class="form-check-input" name="Person[highlighted]" type="checkbox" id="inlineCheckbox1" value="y">
+            <label class="form-check-label" for="inlineCheckbox1">Highlighted</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+</form>
